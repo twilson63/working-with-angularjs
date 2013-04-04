@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>angularJs - HTML enhanced for web apps!</title>
+
+    <meta name="description" content="A presentation on AngularJS for the Charleston Google Development Group">
+    <meta name="author" content="Tom Wilson">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      <div class="reveal">
+        <div class="slides">
+        <section>
+          <h1>Working With AngularJS</h1>
+          <p>
+                <small>Created by <a href="http://twilson63">Tom Wilson</a> / <a href="http://twitter.com/twilson63">@twilson63</a></small>
+              </p>
+        </section>
+        <section>
+          <h2>What is AngularJS?</h2>
+          <img src="https://raw.github.com/angular/angular.js/master/images/logo/AngularJS-Shield.exports/AngularJS-Shield-small.png" style="border:none;" />
+        </section>
+        <section>
+          <h3>A JavaScript Web Framework</h3>
+        </section>
+        <section>
+          <img src="/javascript-wo-frameworks.png" />
+          <h3>JavaScript without a Framework</h3>
+        </section>
+        <section>
+          <img src="/javascript-with-frameworks.png" />
+          <h3>JavaScript with a Framework</h3>
+        </section>
+        <section>
+          <img src="https://raw.github.com/angular/angular.js/master/images/logo/AngularJS-Shield.exports/AngularJS-Shield-small.png" style="border:none;" />
+          <h3>Superheroic MVW Framework</h3>
+        </section>
+        <section>
+          <h3>Features</h3>
+          <ul>
+            <li>Data-binding</li>
+            <li>Dependency Injection</li>
+            <li>HTML Templates</li>
+            <li>and more...</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Data-Binding</h3>
+          <pre>
+            <code style="font-size: 1.8em;line-height: 1em;">
+&lt;div ng-app&gt;
+  &lt;h1&gt;{{title}}&lt;/h1&gt;
+  &lt;input type="text" ng-model="title"&gt;
+&lt;/div&gt;
+            </code>
+          </pre>
+          <a href="http://jsbin.com/ovumoz/3/edit" target="new">Live Demo</a>
+        </section>
+        <section>
+          <h3>Dependency Injection</h3>
+          <pre>
+            <code>
+function MainCtrl($scope, $http) {
+  $http.get('http://jsbin.com/abaqip')
+    .success(function(data) {
+      $scope.repos = data;
+    });
+}
+            </code>
+          </pre>
+          <h3>HTML Template</h3>
+          <pre>
+            <code>
+&lt;ul&gt;
+  &lt;li ng-repeat="repo in repos" &gt;
+    {{name}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h1><a href="http://jsbin.com/efiwot/4/edit" target="new">Live Demo</a></h1>
+        </section>
+        <section>
+          <h3>Routing with ng-view</h3>
+          <pre><code>
+&lt;body ng-app="MyApp"&gt;
+  &lt;ng-view&gt;&lt;/ng-view&gt;
+&lt;/body&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h3>$routeProvider</h3>
+          <pre><code>
+angular.module('MyApp', [])
+  .config(function($routeProvider) {
+    $routeProvider
+      .when('/', { template: 'main.html', controller: 'MainCtrl'})
+      .when('/page2', { template: 'page2.html', controller: 'Page2Ctrl'})
+      
+  })
+          </code></pre>
+        </section>
+        <section>
+          <h1><a href="http://jsbin.com/idoset/4/edit" target="new">Live Demo</a></h1>
+        </section>
+        <section>
+          <h3>Filters</h3>
+          <pre><code>
+&lt;input type="text" ng-model="search"&gt;
+&lt;ul&gt;
+  &lt;li ng-repeat="repo in repos | filter:search | orderBy: 'name'" &gt;
+    {{name}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+          </code></pre>
+          <a href="http://jsbin.com/efiwot/5/edit" target="new">Live Demo</a>
+
+        </section>
+        <section>
+          <h3>Blink!</h3>
+          <pre><code>
+&lt;blink&gt;Like its 1999&lt;/blink&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h3>Directives</h3>
+          <pre><code>
+angular.module('MyApp', [])
+  .directive('blink', function() {
+    return {
+      template: '&lt;marquee scrollamount="100%"&gt;Blink!&lt;/marquee&gt;'
+    }
+});
+          </code></pre>
+          <a href="http://jsbin.com/ovumoz/6/edit">Live Demo</a>
+        </section>
+        <section>
+          <h3>Thats nice, but how about something useful.</h3>
+        </section>
+        <section>
+          <section>
+            <h3><a href="http://angular-ui.github.com/bootstrap/" target="new">ui-bootstrap</a></h3>
+            <ul>
+              <li><a href="http://jsbin.com/ekohex/2/edit" target="new">Accordion</a></li>
+              <li><a href="http://jsbin.com/iyuhot/1/edit" target="new">Alerts</a></li>
+              <li><a href="http://jsbin.com/iyuhot/1/edit" target="new">Buttons</a></li>
+              <li><a href="http://jsbin.com/oxokef/1/edit" target="new">Carousel</a></li>
+              <li><a href="http://jsbin.com/ahewep/1/edit" target="new">Tabs</a></li>
+              <li><a href="http://jsbin.com/ezadin/1/edit" target="new">Dialogs</a></li>
+              <li><a href="http://jsbin.com/asakan/2/edit" target="new">Popover</a></li>
+          </section>
+          <section>
+            <h3><a href="http://angular-ui.github.com/" target="new">angular-ui</a></h3>
+            <h3><a href="http://angular-ui.github.com/ng-grid/" target="new">ngGrid</a></h3>
+            <h3><a href="http://ngmodules.org/" target="new">ngModules</a></h3>
+            <h3><a href="http://mgcrea.github.com/angular-strap" target="new">AngularStrap</a></h3>
+          </section>
+        </section>
+        <section>
+          <h3>Authentication</h3>
+          <a href="http://witoldsz.github.com/angular-http-auth/">http-auth-interceptor</a>
+        </section>
+        <section>
+          <h3>Testing</h3>
+          <ul>
+            <li><a href="http://docs.angularjs.org/guide/dev_guide.unit-testing" target="new">Unit Testing</a></li>
+            <li><a href="http://docs.angularjs.org/guide/dev_guide.e2e-testing" target="new">End to End Testing</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Internet Explorer</h3>
+          <a href="http://docs.angularjs.org/guide/ie">Guide</a>
+        </section>
+        <section>
+          <h3>Minification</h3>
+          <a href="https://github.com/btford/ngmin">ngMin</a>
+        </section>
+        <section>
+          <h3>Debugging</h3>
+          <a href="https://github.com/angular/angularjs-batarang" target="new">Batarang</a>
+        </section>
+        <section>
+          <h3>Tutorial</h3>
+          <a href="http://docs.angularjs.org/tutorial" target="new">Tutorial</a>
+        </section>
+        </div>
+      </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: 'page',
+        //transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
